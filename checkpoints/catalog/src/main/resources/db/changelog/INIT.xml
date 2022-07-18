@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.12.xsd">
+
+
+    <changeSet id="1" author="andre">
+
+        <preConditions onFail="MARK_RAN" onFailMessage="Já existe a tabela artist!">
+            <not>
+                <tableExists tableName="artist" />
+            </not>
+        </preConditions>
+
+        <createTable tableName="artist">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_artist" />
+            </column>
+            <column name="name" type="${description}">
+                <constraints nullable="false" unique="true" />
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
